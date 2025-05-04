@@ -1,0 +1,14 @@
+from tree import Arbre
+from error_printer import error_printer
+
+def caractere(tokens, tree, parent):
+    if type(tokens[0]) == tuple:
+        if tokens[0][0] == 3:
+            tree.add_node(tokens[0][1], parent)
+            tokens.pop(0)
+        else:
+            error_printer("caractere", tokens, tree, [3])
+            
+    else:
+        error_printer("caractere", tokens, tree, [3])
+

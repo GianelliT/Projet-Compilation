@@ -1,0 +1,10 @@
+with Ada.Text_IO ; use Ada.Text_IO ;
+
+procedure MonFichier is
+   procedure Ma_Procedure(Param1: Integer; Param2: Boolean) is
+   begin
+      return null;
+   end Ma_Procedure;
+begin
+   return null;
+end MonFichier;

@@ -1,0 +1,63 @@
+L'expression régulière identificateur :
+⟨chiffre⟩ ::= [0-9]
+⟨alpha⟩ ::= [a-z | A-Z]
+⟨ident⟩ ::= ⟨alpha⟩(⟨alpha⟩|⟨chiffre⟩|_)*
+
+Les constantes entières et caractères sont définies de la manière suivante :
+⟨entier⟩ ::= ⟨chiffre⟩+
+⟨caractere⟩ ::= ' ⟨un des 95 caracteres ASCII imprimables⟩ '
+
+opérateur     | associativité | précédence
+--------------------------------------------
+or, or else   | gauche        |  plus faible
+and, and then | gauche        |
+not           |               | 
+= /=          |               | 
+> >= < <=     |               | 
++ -           | gauche        | 
+* / rem       | gauche        |
+- (unaire)    |               | 
+.             | gauche        | plus forte
+
+
+Dans cette grammaire, l'axiome est le non-terminal fichier. Les mots clés sont listés ci-dessous :
+access ; and ; begin ; else ; elsif ; end ; false ; for ; function ; if ; in ; is ; loop ; new ; not ; null ; or ; out ; procedure ; record ; rem ; return ; reverse ; then ; true ; type ; use ; while ; with ;
+
+(fichier) ::= with Ada.Text_IO; use Ada.Text_IO;
+            procedure (ident) is (decl)* 
+            begin (instr)+ end (ident)? ; EOF
+            
+(decl) ::= type (ident); 
+            | type (ident) is access (ident) ;
+            | type (ident) is record (champs)+ end record;
+            | (ident), : (type) (:= (expr))? ;
+            | procedure (ident) (params)? is (decl)* 
+              begin (instr)+ end (ident)? ;
+            | function (ident) (params)? return (type) is (decl)* 
+              begin (instr)+ end (ident)?;
+(champs) ::= (ident), : (type) ;
+(type) ::= (ident)
+            | access (ident)
+(params) ::= ( (param); ) 
+(param) ::= (ident); : (mode)? (type)
+(mode) ::= in | in out
+(expr) ::= (entier) | (caractère) | true | false | null
+            | ( (expr) )
+            | (accès)
+            | (expr) (opérateur) (expr)
+            | not (expr) | - (expr)
+            | new (ident)
+            | (ident) ( (expr)+ )
+            | character ' val ( (expr) )
+(instr) ::= (accès) := (expr) ;
+            | (ident) ;
+            | (ident) ( (expr)+);
+            | return (expr)?;
+            | begin (instr)+ end;
+            | if (expr) then (instr)+ (elsif (expr) then (instr)+)* 
+            (else (instr) +)? end if ; 
+            | for (ident) in reverse? (expr) .. (expr)
+             loop (instr)+ end loop;
+            | while (expr) loop (instr)+ end
+(operateur) ::=  = | /= | < | <= | > | >= | + | - | * | / | rem | and | and then | or | or else
+acces ::= (ident) | (expr) . (ident)

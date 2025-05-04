@@ -1,0 +1,8 @@
+with Ada.Text_IO ; use Ada.Text_IO ;
+
+procedure MonFichier is
+begin
+   if (Ma_Variable = 0) then
+      Ma_Variable := 1 ;
+   end if;
+end MonFichier;

@@ -1,0 +1,8 @@
+with Ada.Text_IO ; use Ada.Text_IO ;
+
+procedure MonFichier is
+begin
+   if (X > 0) and Y or Z and then U then
+      X := X - 1;
+   end if;
+end MonFichier;

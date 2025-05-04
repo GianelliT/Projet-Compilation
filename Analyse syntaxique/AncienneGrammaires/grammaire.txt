@@ -1,0 +1,111 @@
+FICHIER -> with ada point text pointvirgule use ada point textio pointvirgule procedure IDENT is DECLETOILE begin INSTRPLUS end IDENTINTER pointvirgule eof.
+
+DECL -> type IDENT DECL2
+        | IDENTPLUS deuxpoint TYPE ASSIGNINTER pointvirgule
+        | procedure IDENT PARAMSINTER is DECLETOILE begin INSTRPLUS end IDENTINTER pointvirgule
+        | function IDENT PARAMSINTER return TYPE is DECLETOILE begin INSTRPLUS end IDENTINTER pointvirgule .
+
+DECL2 -> pointvirgule | is DECL3 .
+
+DECL3 -> access IDENT pointvirgule | record CHAMPSPLUS end record pointvirgule .
+
+DECLETOILE -> DECL DECLETOILE2 | .
+
+DECLETOILE2 -> DECL DECLETOILE2 | . 
+
+ASSIGNINTER -> deuxpoint egal EXPR | .
+
+IDENT -> ident .
+
+IDENTPLUS -> IDENT IDENTPLUS .
+
+IDENTPLUS -> virgule IDENT IDENTPLUS | .
+
+IDENTINTER -> IDENT | .
+
+CHAMPS -> IDENTPLUS deuxpoint TYPE pointvirgule .
+
+CHAMPSPLUS -> CHAMPS CHAMPSPLUS2.
+
+CHAMPSPLUS2 -> CHAMPS CHAMPSPLUS2 |. 
+
+TYPE -> IDENT | access IDENT .
+
+PARAMS -> ( PARAMPLUS ) .
+
+PARAMSINTER -> PARAMS |.
+
+PARAM -> IDENTPLUS deuxpoint MODEINTER TYPE .
+
+PARAMPLUS -> PARAM PARAMPLUS2 .
+PARAMPLUS2 -> pointvirgule PARAM PARAMPLUS2 | .
+
+MODEINTER -> MODE | .
+
+MODE -> in MODE2 .
+MODE2 -> out | .
+
+EXPR -> EXPRPREFIX EXPR1 EXPRACCES EXPRSUFFIX .
+
+EXPRACCES -> point IDENT | .
+
+EXPR1 -> entier 
+        | caractere 
+        | true 
+        | false 
+        | null 
+        | ( EXPR ) 
+        | new IDENT 
+        | IDENT EXPRPLUSINTER
+        | character apos val ( EXPR ) .
+
+EXPRPREFIX -> not | moins | .
+
+EXPRSUFFIX -> OPERATEUR EXPR | .
+
+EXPRPLUSINTER -> ( EXPR EXPRPLUS2 ) | .
+
+EXPRPLUS2 ->  virgule EXPR EXPRPLUS2 | .
+
+INSTR -> EXPR deuxpoint egal EXPR pointvirgule
+        | IDENT INSTR2 
+        | return EXPRINTER pointvirgule
+        | begin INSTRPLUS end pointvirgule
+        | if EXPR then INSTRPLUS ELSIFETOILE ELSEINTER end if pointvirgule 
+        | for IDENT in REVERSEINTER EXPR point point EXPR loop INSTRPLUS end loop pointvirgule
+        | while EXPR loop INSTRPLUS end .
+
+INSTR2 -> EXPRPLUSINTER pointvirgule | deuxpoint egal EXPR pointvirgule | .
+
+EXPRINTER -> EXPR | .
+
+INSTRPLUS -> INSTR INSTRPLUS2 .
+
+INSTRPLUS2 -> INSTR INSTRPLUS2 | .
+
+ELSIFETOILE -> elsif EXPR then INSTRPLUS ELSIFETOILE2 | .
+
+ELSIFETOILE2 -> elsif EXPR then INSTRPLUS ELSIFETOILE2 |.
+
+ELSEINTER -> else INSTRPLUS |.
+
+REVERSEINTER -> reverse |.
+
+OPERATEUR ->  egal | div EGAL | inf EGAL | sup EGAL | plus | moins | fois | rem | and THEN | or ELSE. 
+
+ELSE -> else | .
+
+EGAL -> egal | .
+
+THEN -> then | .
+
+
+
+OP1 -> OP1 or ELSE OP2 | OP2
+OP2 -> OP2 and THEN OP3 | OP3
+OP3 -> OP3 div egal OP4 | OP3 egal OP4 | OP4
+OP4 -> OP4 sup EGAL OP5 | OP4 inf EGAL OP5 | OP5
+OP5 -> OP5 plus OP6 | OP5 moins OP6 | OP6
+OP6 -> OP6 fois OP7 | OP6 div OP7 | OP6 rem OP7 | OP7
+OP7 -> moins OP7 | OP8
+

@@ -1,0 +1,8 @@
+with Ada.Text_IO ; use Ada.Text_IO ;
+
+procedure MonFichier is
+   type Mon_Type is access Integer;
+   test : Integer := 123;
+begin
+   test;
+end MonFichier;

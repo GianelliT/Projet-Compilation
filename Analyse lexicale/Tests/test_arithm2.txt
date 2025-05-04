@@ -1,0 +1,7 @@
+with Ada.Text_IO ; use Ada.Text_IO ;
+
+procedure MonFichier is
+   Resultat : Integer;
+begin
+   Resultat := - 1 * 2  + 3 * 4 / 5 / 6;
+end MonFichier;

@@ -1,0 +1,7 @@
+with Ada.Text_IO ; use Ada.Text_IO ;
+
+procedure MonFichier is
+   Ma_Variable : Integer;
+begin
+   Ma_variable := 10;
+end MonFichier;

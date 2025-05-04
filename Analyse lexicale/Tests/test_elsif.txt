@@ -1,0 +1,12 @@
+with Ada.Text_IO ; use Ada.Text_IO ;
+
+procedure MonFichier is
+begin
+   if (X = 0) then
+      i := 1;
+   elsif (X = 1) then
+      i := 2;
+   else
+      i := 3;
+   end if;
+end MonFichier;

@@ -1,0 +1,10 @@
+with Ada.Text_IO ; use Ada.Text_IO ;
+
+procedure MyFile is
+   Test : Integer := 0;
+   begin
+      while (True) loop
+         Test :=Test + 1;
+
+      end loop;
+end MyFile;

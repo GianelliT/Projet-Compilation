@@ -1,0 +1,96 @@
+FICHIER -> with IDENT point text_io pointvirgule use ada point text_io pointvirgule procedure IDENT is DECLETOILE begin INSTRPLUS end IDENTINTER pointvirgule eof .
+
+IDENT -> ident .
+IDENTPLUS -> IDENT IDENTPLUS2 .
+IDENTPLUS2 -> virgule IDENT IDENTPLUS2 | .
+IDENTINTER -> IDENT | . 
+
+DECL -> type IDENT DECL1 
+        | IDENTPLUS deuxpoints TYPE ASSIGNINTER pointvirgule 
+        | procedure IDENT PARAMSINTER is DECLETOILE begin INSTRPLUS end IDENTINTER pointvirgule
+        | function IDENT PARAMSINTER return TYPE is DECLETOILE begin INSTRPLUS end IDENTINTER pointvirgule.
+DECL1 -> pointvirgule | is DECL2 .
+DECL2 -> access IDENT pointvirgule | record CHAMPSPLUS end record pointvirgule .
+
+DECLETOILE -> DECL DECLETOILE2 | .
+DECLETOILE2 -> DECL DECLETOILE2 | .
+
+CHAMPS -> IDENTPLUS deuxpoints TYPE pointvirgule.
+
+CHAMPSPLUS -> CHAMPS CHAMPSPLUS2 .
+CHAMPSPLUS2 -> CHAMPS CHAMPSPLUS2 | .
+
+TYPE -> IDENT | access IDENT .
+
+PARAMS -> ( PARAMPLUS ) .
+
+PARAMSINTER -> PARAMS | .
+
+PARAM -> IDENTPLUS deuxpoints MODEINTER TYPE .
+
+PARAMPLUS -> PARAM PARAMPLUS2 .
+PARAMPLUS2 -> pointvirgule PARAM PARAMPLUS2 | .
+
+MODE -> in MODE2 .
+MODE2 -> out | .
+
+MODEINTER -> MODE | .
+
+EXPR -> OP EXACCES .
+EXPR1 -> ENTIER | CARACTER | true | false | null | ( EXPR ) | IDENT EXPR2 | new IDENT | character'val ( EXPR ).
+EXPR2 -> EXPRPLUS | .
+EXACCES -> point IDENT EXACCES | .
+
+EXPRINTER -> EXPR | .
+
+EXPRPLUS ->  ( EXPR EXPRPLUS2 ) .
+EXPRPLUS2 -> virgule EXPR EXPRPLUS2 | .
+
+INSTR -> OP point IDENT INSTR2
+        | IDENT INSTR2
+        | return EXPRINTER pointvirgule 
+        | begin INSTRPLUS end pointvirgule 
+        | while EXPR loop INSTRPLUS end loop pointvirgule 
+        | if EXPR then INSTRPLUS ELSIFETOILE ELSEINTER end if pointvirgule 
+        | for IDENT in REVERSEINTER EXPR point point EXPR loop INSTRPLUS end loop pointvirgule.
+
+INSTR2 -> deuxpoints eg EXPR pointvirgule 
+        | pointvirgule 
+        | EXPRPLUS pointvirgule.
+
+INSTRPLUS -> INSTR INSTRPLUS2.
+INSTRPLUS2 -> INSTRPLUS | .
+
+REVERSEINTER -> reverse | .
+
+OP -> OPE1 OPE' .
+OPE' -> or ELSE OPE1 OPE' | .
+OPE1 -> OPE2 OPE1' .
+OPE1' -> and THEN OPE2 OPE1' | .
+OPE2 -> OPE3 OPE2' .
+OPE2' -> not OPE3 OPE2' | .
+OPE3 -> OPE4 OPE3' .
+OPE3' -> COMPARATEUR OPE4 OPE3' | .
+OPE4 -> OPE5 OPE4'.
+OPE4' -> ORDRE OPE5 OPE4' | .
+OPE5 -> OPE6 OPE5'.
+OPE5' -> ADD OPE6 OPE5' | .
+OPE6 -> OPE7 OPE6' .
+OPE6' -> MULT OPE7 OPE6' | .
+OPE7 -> moins OPE8 | OPE8 .
+OPE8 -> EXPR1 .
+
+ELSE -> else | .
+THEN -> then | .
+COMPARATEUR -> eg | dif .
+ORDRE -> inf EGAL | sup EGAL .
+EGAL -> eg | .
+ADD -> plus | moins .
+MULT -> fois | div | rem .
+
+ELSEINTER -> else INSTRPLUS | .
+ELSIFETOILE -> elsif EXPR then INSTRPLUS ELSIFETOILE | .
+ASSIGNINTER -> deuxpoints eg EXPR | .
+ENTIER -> entier .
+
+CARACTER -> caracter .
